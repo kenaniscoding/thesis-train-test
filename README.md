@@ -1,4 +1,5 @@
 # TRAINING AND TESTING DATASET
+- training and testing dataset
 ## Steps
 0) Download the image dataset refer [here](https://drive.google.com/drive/folders/1tLUeG6NLy-yfO8jMLsA9KxOyEoKQxMbM?usp=sharing)
 1) Split the image dataset refer [here](https://github.com/kenaniscoding/thesis-dataset-split)
