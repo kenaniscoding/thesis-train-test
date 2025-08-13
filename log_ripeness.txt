@@ -1,0 +1,4 @@
+Saved plot: train_class_distribution_ripeness.png
+Saved plot: test_class_distribution_ripeness.png
+Saved plot: valid_class_distribution_ripeness.png
+Loaded pretrained weights for efficientnet-b0
