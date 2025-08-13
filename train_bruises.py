@@ -128,7 +128,8 @@ def evaluate_model(model, test_loader, class_names):
     
 def train_model(num_epochs):
     train_loader, test_loader, class_names, val_loader = create_dataloaders()
-
+    
+    # CHANGEME to correct efficientnet model
     model = EfficientNet.from_pretrained('efficientnet-b0', num_classes=len(class_names))
     model = model.to(device)
 
@@ -157,7 +158,7 @@ def train_model(num_epochs):
 
             running_loss += loss.item()
             progress_bar.set_postfix(loss=loss.item())
-
+            
         print(f"Epoch [{epoch+1}/{num_epochs}], Average Loss: {running_loss/len(train_loader):.4f}")
         
         # Validation phase

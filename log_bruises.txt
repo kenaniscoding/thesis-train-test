@@ -1,0 +1,4 @@
+Saved plot: train_class_distribution_bruises.png
+Saved plot: test_class_distribution_bruises.png
+Saved plot: valid_class_distribution_bruises.png
+Loaded pretrained weights for efficientnet-b0
