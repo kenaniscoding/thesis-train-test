@@ -13,3 +13,7 @@ python train_bruises.py
 ```bash
 python train_ripeness.py
 ```
+## Other Remarks
+- output graphs are in .png
+- output CLIs are in .txt
+- the `epoch=1` is default at `main()`
