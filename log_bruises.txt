@@ -2,3 +2,21 @@ Saved plot: train_class_distribution_bruises.png
 Saved plot: test_class_distribution_bruises.png
 Saved plot: valid_class_distribution_bruises.png
 Loaded pretrained weights for efficientnet-b0
+Epoch [1/1], Average Loss: 0.4524
+Validation Loss: 0.5631, Validation Accuracy: 0.7778
+Saved plot: val_loss_accuracy_curve_bruises.png
+Model saved successfully.
+
+Classification Report:
+              precision    recall  f1-score   support
+
+     bruised       0.72      0.99      0.83       269
+ not_bruised       0.97      0.55      0.70       225
+
+    accuracy                           0.79       494
+   macro avg       0.85      0.77      0.77       494
+weighted avg       0.84      0.79      0.77       494
+
+
+Precision: 0.8355, Recall: 0.7874, F1 Score: 0.7745
+Saved plot: confusion_matrix_bruises.png
