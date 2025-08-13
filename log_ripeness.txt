@@ -2,3 +2,21 @@ Saved plot: train_class_distribution_ripeness.png
 Saved plot: test_class_distribution_ripeness.png
 Saved plot: valid_class_distribution_ripeness.png
 Loaded pretrained weights for efficientnet-b0
+Validation Loss: 0.3282, Validation Accuracy: 0.8861
+Saved plot: val_loss_accuracy_curve_ripeness.png
+Model saved successfully.
+
+Classification Report:
+              precision    recall  f1-score   support
+
+       green       0.94      0.87      0.90       239
+      yellow       0.91      0.92      0.92       124
+yellow_green       0.80      0.87      0.83       188
+
+    accuracy                           0.88       551
+   macro avg       0.88      0.89      0.88       551
+weighted avg       0.89      0.88      0.88       551
+
+
+Precision: 0.8857, Recall: 0.8820, F1 Score: 0.8830
+Saved plot: confusion_matrix_ripeness.png
