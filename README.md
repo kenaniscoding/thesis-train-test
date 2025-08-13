@@ -16,4 +16,5 @@ python train_ripeness.py
 ## Other Remarks
 - output graphs are in .png
 - output CLIs are in .txt
-- the `epoch=1` is default at `main()`
+- variable `epoch=1` is default at `main()`
+- img dataset path is set to be the same directory as the .py as seen on the `.gitignore`
