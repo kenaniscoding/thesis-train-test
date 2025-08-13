@@ -5,11 +5,11 @@
 1) Split the image dataset refer [here](https://github.com/kenaniscoding/thesis-dataset-split)
 2) Clone this repository and check the `changeme` at `train_bruises.py` and `train_ripeness.py`
 3) Run the command in CLI 
-for the bruises
+- for the bruises
 ```bash
 python train_bruises.py
 ```
-for the ripeness
+- for the ripeness
 ```bash
 python train_ripeness.py
 ```
