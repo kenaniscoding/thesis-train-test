@@ -11,6 +11,7 @@ from efficientnet_pytorch import EfficientNet
 from tqdm import tqdm
 from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix, classification_report
 from collections import Counter
+import torchvision.models as models
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
@@ -130,9 +131,12 @@ def train_model(num_epochs):
     train_loader, test_loader, class_names, val_loader = create_dataloaders()
     
     # CHANGEME to correct efficientnet model
-    model = EfficientNet.from_pretrained('efficientnet-b0', num_classes=len(class_names))
+    # model = EfficientNet.from_pretrained('efficientnet-b0', num_classes=len(class_names))
+    # model = model.to(device)
+    model = models.alexnet(pretrained=True)
+    model.classifier[6] = nn.Linear(model.classifier[6].in_features, len(class_names))
     model = model.to(device)
-
+    
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 

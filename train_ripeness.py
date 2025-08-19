@@ -11,6 +11,7 @@ from sklearn.metrics import precision_score, recall_score, f1_score, confusion_m
 from collections import Counter
 from torch.utils.data import DataLoader
 from efficientnet_pytorch import EfficientNet
+import torchvision.models as models
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 print(f"Using device: {device}")
@@ -129,9 +130,12 @@ def train_model(num_epochs):
     train_loader, test_loader, class_names, val_loader = create_dataloaders()
     
     # CHANGEME to correct efficientnet model
-    model = EfficientNet.from_pretrained('efficientnet-b0', num_classes=len(class_names))
+    # model = EfficientNet.from_pretrained('efficientnet-b0', num_classes=len(class_names))
+    # model = model.to(device)
+    model = models.alexnet(pretrained=True)
+    model.classifier[6] = nn.Linear(model.classifier[6].in_features, len(class_names))
     model = model.to(device)
-
+    
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
 
@@ -208,10 +212,11 @@ def train_model(num_epochs):
     evaluate_model(model, test_loader, class_names)
     
 def main():
+    EPOCHS = 1
     log_path = os.path.join(data_dir, "log_ripeness.txt")
     with open(log_path, "w") as f:
         sys.stdout = f
-        train_model(1)
+        train_model(EPOCHS)
         
     sys.stdout = sys.__stdout__
     print(f"Training log saved to: {log_path}")
