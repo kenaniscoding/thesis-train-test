@@ -3,14 +3,14 @@ import torch.nn as nn
 import torch.optim as optim
 import torchvision.transforms as transforms
 import torchvision.datasets as datasets
+import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import numpy as np
-from torch.utils.data import DataLoader
-from efficientnet_pytorch import EfficientNet
 from tqdm import tqdm
 from sklearn.metrics import precision_score, recall_score, f1_score, confusion_matrix, classification_report
 from collections import Counter
+from torch.utils.data import DataLoader
+from efficientnet_pytorch import EfficientNet
 import torchvision.models as models
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -28,11 +28,9 @@ data_dir = ''
 train_transforms = transforms.Compose([
     transforms.RandomHorizontalFlip(),  # Randomly flip horizontally
     transforms.RandomVerticalFlip(),
-    transforms.RandomRotation(360),      # Randomly rotate by up to 180 degrees
-    #transforms.Grayscale(num_output_channels=3),
-    transforms.GaussianBlur(kernel_size=(5, 9), sigma=(0.1, 5)),  # Apply Gaussian blur
     #transforms.Lambda(threshold_image),  # Apply the custom thresholding function
-    #transforms.Lambda(hysteresis_thresholding),  # Apply the edge detection
+    transforms.RandomRotation(360),
+    transforms.GaussianBlur(kernel_size=(5, 9), sigma=(0.1, 5)),  # Apply Gaussian blur
     #transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2, hue=0.1),  # Randomly adjust color
     transforms.Resize((224, 224)),
     transforms.ToTensor(),              # Convert to tensor
@@ -64,16 +62,16 @@ def plot_class_distribution(dataset, title):
     plt.xticks(rotation=45)
 
     # Save as PNG instead of only showing
-    save_path = os.path.join(data_dir, f"{title.lower()}_class_distribution_bruises.png")
+    save_path = os.path.join(data_dir, f"{title.lower()}_class_distribution_ripeness_alexnet.png")
     plt.tight_layout()
     plt.savefig(save_path)
     plt.close()
     print(f"Saved plot: {save_path}")
-    
+
 def create_dataloaders():
-    train_data_path = os.path.join(data_dir, 'train/bruises')
-    test_data_path = os.path.join(data_dir, 'test/bruises')
-    val_data_path = os.path.join(data_dir, 'val/bruises')
+    train_data_path = os.path.join(data_dir, 'train/ripeness')
+    test_data_path = os.path.join(data_dir, 'test/ripeness')
+    val_data_path = os.path.join(data_dir, 'val/ripeness')
 
     train_dataset = datasets.ImageFolder(root=train_data_path, transform=train_transforms)
     test_dataset = datasets.ImageFolder(root=test_data_path, transform=test_transforms)
@@ -82,6 +80,7 @@ def create_dataloaders():
     train_loader = DataLoader(train_dataset, batch_size=32, shuffle=True, num_workers=0)
     test_loader = DataLoader(test_dataset, batch_size=32, shuffle=False, num_workers=0)
     val_loader = DataLoader(val_dataset, batch_size=32, shuffle=False, num_workers=0)
+
     plot_class_distribution(train_dataset, "Train")
     plot_class_distribution(test_dataset, "Test")
     plot_class_distribution(val_dataset, "Valid")
@@ -121,7 +120,7 @@ def evaluate_model(model, test_loader, class_names):
     plt.xlabel("Predicted")
     plt.ylabel("Actual")
     plt.title("Confusion Matrix")
-    save_path = os.path.join(data_dir, "confusion_matrix_bruises.png")
+    save_path = os.path.join(data_dir, "confusion_matrix_ripeness_alexnet.png")
     plt.tight_layout()
     plt.savefig(save_path)
     plt.close()
@@ -131,11 +130,11 @@ def train_model(num_epochs):
     train_loader, test_loader, class_names, val_loader = create_dataloaders()
     
     # CHANGEME to correct efficientnet model
-    model = EfficientNet.from_pretrained('efficientnet-b0', num_classes=len(class_names))
-    model = model.to(device)
-    # model = models.alexnet(pretrained=True)
-    # model.classifier[6] = nn.Linear(model.classifier[6].in_features, len(class_names))
+    # model = EfficientNet.from_pretrained('efficientnet-b0', num_classes=len(class_names))
     # model = model.to(device)
+    model = models.alexnet(pretrained=True)
+    model.classifier[6] = nn.Linear(model.classifier[6].in_features, len(class_names))
+    model = model.to(device)
     
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
@@ -148,7 +147,7 @@ def train_model(num_epochs):
     for epoch in range(num_epochs):
         model.train()
         running_loss = 0.0
-        
+
         progress_bar = tqdm(train_loader, desc=f"Epoch {epoch+1}/{num_epochs}", leave=True)
 
         for images, labels in progress_bar:
@@ -161,15 +160,15 @@ def train_model(num_epochs):
             optimizer.step()
 
             running_loss += loss.item()
-            progress_bar.set_postfix(loss=loss.item())
+            progress_bar.set_postfix(loss=loss.item())        
             
         print(f"Epoch [{epoch+1}/{num_epochs}], Average Loss: {running_loss/len(train_loader):.4f}")
-        
+
         # Validation phase
         model.eval()
         val_loss = 0.0
-        correct = 0
-        total = 0
+        val_correct = 0
+        val_total = 0
 
         with torch.no_grad():
             for images, labels in val_loader:
@@ -179,12 +178,13 @@ def train_model(num_epochs):
                 val_loss += loss.item()
 
                 _, predicted = torch.max(outputs, 1)
-                total += labels.size(0)
-                correct += (predicted == labels).sum().item()
+                val_total += labels.size(0)
+                val_correct += (predicted == labels).sum().item()
 
-        val_accuracy = correct / total
+        val_accuracy = val_correct / val_total
         avg_val_loss = val_loss / len(val_loader)
 
+        # Store metrics
         epoch_list.append(epoch + 1)
         val_loss_list.append(avg_val_loss)
         val_acc_list.append(val_accuracy)
@@ -199,22 +199,21 @@ def train_model(num_epochs):
     plt.title("Validation Loss & Accuracy per Epoch")
     plt.legend()
     plt.grid(True)
-    save_path = os.path.join(data_dir, "val_loss_accuracy_curve_bruises.png")
+    save_path = os.path.join(data_dir, "val_loss_accuracy_curve_ripeness_alexnet.png")
     plt.tight_layout()
     plt.savefig(save_path)
     plt.close()
     print(f"Saved plot: {save_path}")
 
-    file_path = os.path.join(data_dir, "bruises_b0.pth")
+    file_path = os.path.join(data_dir, "ripeness_alexnet.pth")
     torch.save(model.state_dict(), file_path)
     print("Model saved successfully.")
 
     evaluate_model(model, test_loader, class_names)
     
 def main():
-    # CHANGE ME
     EPOCHS = 1
-    log_path = os.path.join(data_dir, "log_bruises.txt")
+    log_path = os.path.join(data_dir, "log_ripeness_alexnet.txt")
     with open(log_path, "w") as f:
         sys.stdout = f
         train_model(EPOCHS)
@@ -223,4 +222,4 @@ def main():
     print(f"Training log saved to: {log_path}")
 
 if __name__ == "__main__":
-    main()
+    main() 

@@ -130,11 +130,11 @@ def train_model(num_epochs):
     train_loader, test_loader, class_names, val_loader = create_dataloaders()
     
     # CHANGEME to correct efficientnet model
-    # model = EfficientNet.from_pretrained('efficientnet-b0', num_classes=len(class_names))
-    # model = model.to(device)
-    model = models.alexnet(pretrained=True)
-    model.classifier[6] = nn.Linear(model.classifier[6].in_features, len(class_names))
+    model = EfficientNet.from_pretrained('efficientnet-b0', num_classes=len(class_names))
     model = model.to(device)
+    # model = models.alexnet(pretrained=True)
+    # model.classifier[6] = nn.Linear(model.classifier[6].in_features, len(class_names))
+    # model = model.to(device)
     
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)

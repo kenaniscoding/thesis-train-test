@@ -63,8 +63,8 @@ def plot_class_distribution(dataset, title):
     plt.title('Number of Images per Mango Classification')
     plt.xticks(rotation=45)
 
-    # Save as PNG instead of only showing
-    save_path = os.path.join(data_dir, f"{title.lower()}_class_distribution_bruises.png")
+    # Save as_alexnet.png instead of only showing
+    save_path = os.path.join(data_dir, f"{title.lower()}_class_distribution_bruises_alexnet.png")
     plt.tight_layout()
     plt.savefig(save_path)
     plt.close()
@@ -121,7 +121,7 @@ def evaluate_model(model, test_loader, class_names):
     plt.xlabel("Predicted")
     plt.ylabel("Actual")
     plt.title("Confusion Matrix")
-    save_path = os.path.join(data_dir, "confusion_matrix_bruises.png")
+    save_path = os.path.join(data_dir, "confusion_matrix_bruises_alexnet.png")
     plt.tight_layout()
     plt.savefig(save_path)
     plt.close()
@@ -131,11 +131,11 @@ def train_model(num_epochs):
     train_loader, test_loader, class_names, val_loader = create_dataloaders()
     
     # CHANGEME to correct efficientnet model
-    model = EfficientNet.from_pretrained('efficientnet-b0', num_classes=len(class_names))
-    model = model.to(device)
-    # model = models.alexnet(pretrained=True)
-    # model.classifier[6] = nn.Linear(model.classifier[6].in_features, len(class_names))
+    # model = EfficientNet.from_pretrained('efficientnet-b0', num_classes=len(class_names))
     # model = model.to(device)
+    model = models.alexnet(pretrained=True)
+    model.classifier[6] = nn.Linear(model.classifier[6].in_features, len(class_names))
+    model = model.to(device)
     
     criterion = nn.CrossEntropyLoss()
     optimizer = optim.Adam(model.parameters(), lr=0.001)
@@ -199,13 +199,13 @@ def train_model(num_epochs):
     plt.title("Validation Loss & Accuracy per Epoch")
     plt.legend()
     plt.grid(True)
-    save_path = os.path.join(data_dir, "val_loss_accuracy_curve_bruises.png")
+    save_path = os.path.join(data_dir, "val_loss_accuracy_curve_bruises_alexnet.png")
     plt.tight_layout()
     plt.savefig(save_path)
     plt.close()
     print(f"Saved plot: {save_path}")
 
-    file_path = os.path.join(data_dir, "bruises_b0.pth")
+    file_path = os.path.join(data_dir, "bruises_alexnet.pth")
     torch.save(model.state_dict(), file_path)
     print("Model saved successfully.")
 
@@ -214,7 +214,7 @@ def train_model(num_epochs):
 def main():
     # CHANGE ME
     EPOCHS = 1
-    log_path = os.path.join(data_dir, "log_bruises.txt")
+    log_path = os.path.join(data_dir, "log_bruises_alexnet.txt")
     with open(log_path, "w") as f:
         sys.stdout = f
         train_model(EPOCHS)
