@@ -3,3 +3,5 @@ frames/
 test/
 train/
 val/
+*.zip
+*.pth

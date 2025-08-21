@@ -212,7 +212,7 @@ def train_model(num_epochs):
     evaluate_model(model, test_loader, class_names)
     
 def main():
-    EPOCHS = 1
+    EPOCHS = 15
     log_path = os.path.join(data_dir, "log_ripeness_alexnet.txt")
     with open(log_path, "w") as f:
         sys.stdout = f

@@ -1,0 +1,49 @@
+Saved plot: train_class_distribution_bruises_alexnet.png
+Saved plot: test_class_distribution_bruises_alexnet.png
+Saved plot: valid_class_distribution_bruises_alexnet.png
+Epoch [1/15], Average Loss: 0.7221
+Validation Loss: 0.6947, Validation Accuracy: 0.5412
+Epoch [2/15], Average Loss: 0.6898
+Validation Loss: 0.6928, Validation Accuracy: 0.5412
+Epoch [3/15], Average Loss: 0.6901
+Validation Loss: 0.7172, Validation Accuracy: 0.5412
+Epoch [4/15], Average Loss: 0.6906
+Validation Loss: 0.6934, Validation Accuracy: 0.5412
+Epoch [5/15], Average Loss: 0.6905
+Validation Loss: 0.6935, Validation Accuracy: 0.5412
+Epoch [6/15], Average Loss: 0.6908
+Validation Loss: 0.6934, Validation Accuracy: 0.4588
+Epoch [7/15], Average Loss: 0.6898
+Validation Loss: 0.6930, Validation Accuracy: 0.5412
+Epoch [8/15], Average Loss: 0.6901
+Validation Loss: 0.6934, Validation Accuracy: 0.5412
+Epoch [9/15], Average Loss: 0.6897
+Validation Loss: 0.6944, Validation Accuracy: 0.5412
+Epoch [10/15], Average Loss: 0.6903
+Validation Loss: 0.6956, Validation Accuracy: 0.5412
+Epoch [11/15], Average Loss: 0.6904
+Validation Loss: 0.6942, Validation Accuracy: 0.5412
+Epoch [12/15], Average Loss: 0.6899
+Validation Loss: 0.6943, Validation Accuracy: 0.5412
+Epoch [13/15], Average Loss: 0.6896
+Validation Loss: 0.6934, Validation Accuracy: 0.5412
+Epoch [14/15], Average Loss: 0.6898
+Validation Loss: 0.6934, Validation Accuracy: 0.5412
+Epoch [15/15], Average Loss: 0.6894
+Validation Loss: 0.6964, Validation Accuracy: 0.5412
+Saved plot: val_loss_accuracy_curve_bruises_alexnet.png
+Model saved successfully.
+
+Classification Report:
+              precision    recall  f1-score   support
+
+     bruised       0.54      1.00      0.71       269
+ not_bruised       0.00      0.00      0.00       225
+
+    accuracy                           0.54       494
+   macro avg       0.27      0.50      0.35       494
+weighted avg       0.30      0.54      0.38       494
+
+
+Precision: 0.2965, Recall: 0.5445, F1 Score: 0.3840
+Saved plot: confusion_matrix_bruises_alexnet.png
