@@ -18,3 +18,5 @@ python train_ripeness.py
 - output CLIs are in .txt
 - variable `epoch=1` is default at `main()`
 - img dataset path is set to be the same directory as the .py as seen on the `.gitignore`
+## Timestamp for AlexNet
+![this took a while](assets/image.png)
