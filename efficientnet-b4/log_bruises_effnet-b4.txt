@@ -2,21 +2,49 @@ Saved plot: efficientnet-b4\train_class_distribution_bruises_effnet-b4.png
 Saved plot: efficientnet-b4\test_class_distribution_bruises_effnet-b4.png
 Saved plot: efficientnet-b4\valid_class_distribution_bruises_effnet-b4.png
 Loaded pretrained weights for efficientnet-b4
-Epoch [1/1], Average Loss: 0.4960
-Validation Loss: 0.8847, Validation Accuracy: 0.7407
+Epoch [1/15], Average Loss: 0.4828
+Validation Loss: 1.4116, Validation Accuracy: 0.8128
+Epoch [2/15], Average Loss: 0.3938
+Validation Loss: 0.6505, Validation Accuracy: 0.7901
+Epoch [3/15], Average Loss: 0.3661
+Validation Loss: 0.4479, Validation Accuracy: 0.8272
+Epoch [4/15], Average Loss: 0.3499
+Validation Loss: 0.3790, Validation Accuracy: 0.8004
+Epoch [5/15], Average Loss: 0.3328
+Validation Loss: 0.4819, Validation Accuracy: 0.7819
+Epoch [6/15], Average Loss: 0.3152
+Validation Loss: 0.3696, Validation Accuracy: 0.8457
+Epoch [7/15], Average Loss: 0.3106
+Validation Loss: 0.3467, Validation Accuracy: 0.8519
+Epoch [8/15], Average Loss: 0.2938
+Validation Loss: 0.3789, Validation Accuracy: 0.8477
+Epoch [9/15], Average Loss: 0.2702
+Validation Loss: 0.4098, Validation Accuracy: 0.8395
+Epoch [10/15], Average Loss: 0.2743
+Validation Loss: 0.3368, Validation Accuracy: 0.8436
+Epoch [11/15], Average Loss: 0.2683
+Validation Loss: 0.3732, Validation Accuracy: 0.8457
+Epoch [12/15], Average Loss: 0.2538
+Validation Loss: 0.3482, Validation Accuracy: 0.8416
+Epoch [13/15], Average Loss: 0.2315
+Validation Loss: 0.7946, Validation Accuracy: 0.7881
+Epoch [14/15], Average Loss: 0.2284
+Validation Loss: 0.2329, Validation Accuracy: 0.8992
+Epoch [15/15], Average Loss: 0.2168
+Validation Loss: 0.2883, Validation Accuracy: 0.8909
 Saved plot: efficientnet-b4\val_loss_accuracy_curve_bruises_effnet-b4.png
 Model saved successfully.
 
 Classification Report:
               precision    recall  f1-score   support
 
-     bruised       0.97      0.56      0.71       269
- not_bruised       0.65      0.98      0.78       225
+     bruised       0.96      0.90      0.93       269
+ not_bruised       0.89      0.96      0.92       225
 
-    accuracy                           0.75       494
-   macro avg       0.81      0.77      0.74       494
-weighted avg       0.82      0.75      0.74       494
+    accuracy                           0.93       494
+   macro avg       0.93      0.93      0.93       494
+weighted avg       0.93      0.93      0.93       494
 
 
-Precision: 0.8226, Recall: 0.7490, F1 Score: 0.7406
+Precision: 0.9299, Recall: 0.9271, F1 Score: 0.9273
 Saved plot: efficientnet-b4\confusion_matrix_bruises_effnet-b4.png
