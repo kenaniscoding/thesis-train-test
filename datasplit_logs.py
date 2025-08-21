@@ -7,14 +7,44 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 import argparse
 import math
+import sys
+from datetime import datetime
+
+class LoggingPrinter:
+    """Custom printer that outputs to both console and file"""
+    def __init__(self, log_file_path):
+        self.log_file = open(log_file_path, 'w', encoding='utf-8')
+        self.console = sys.stdout
+        
+        # Write header with timestamp
+        header = f"Dataset Processing Log - {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
+        header += "=" * 60 + "\n"
+        self.log_file.write(header)
+        self.log_file.flush()
+    
+    def print(self, *args, **kwargs):
+        """Print to both console and log file"""
+        # Print to console
+        print(*args, **kwargs)
+        
+        # Print to log file
+        print(*args, **kwargs, file=self.log_file)
+        self.log_file.flush()
+    
+    def close(self):
+        """Close the log file"""
+        self.log_file.close()
 
 class DatasetProcessor:
-    def __init__(self, source_dir, output_dir, train_ratio=0.7, val_ratio=0.15, test_ratio=0.15):
+    def __init__(self, source_dir, output_dir, train_ratio=0.7, val_ratio=0.15, test_ratio=0.15, logger=None):
         self.source_dir = Path(source_dir)
         self.output_dir = Path(output_dir)
         self.train_ratio = train_ratio
         self.val_ratio = val_ratio
         self.test_ratio = test_ratio
+        
+        # Use logger if provided, otherwise use regular print
+        self.print = logger.print if logger else print
         
         # Create output directories
         self.train_dir = self.output_dir / 'train'
@@ -63,24 +93,24 @@ class DatasetProcessor:
     
     def split_dataset(self):
         """Split the dataset into train/val/test sets with new hierarchy"""
-        print("Splitting dataset into hierarchical structure...")
+        self.print("Splitting dataset into hierarchical structure...")
         
         # Process each original class directory
         for original_class in self.class_mapping.keys():
             source_class_dir = self.source_dir / original_class
             
             if not source_class_dir.exists():
-                print(f"Warning: Directory {original_class} not found, skipping...")
+                self.print(f"Warning: Directory {original_class} not found, skipping...")
                 continue
                 
             category, new_class_name = self.class_mapping[original_class]
-            print(f"Processing {original_class} -> {category}/{new_class_name}")
+            self.print(f"Processing {original_class} -> {category}/{new_class_name}")
             
             # Get all images in this class
             images = self.get_image_files(source_class_dir)
             
             if len(images) == 0:
-                print(f"No images found in {original_class}")
+                self.print(f"No images found in {original_class}")
                 continue
             
             # Split into train and temp (val + test)
@@ -97,7 +127,7 @@ class DatasetProcessor:
                 random_state=42
             )
             
-            print(f"  Train: {len(train_images)}, Val: {len(val_images)}, Test: {len(test_images)}")
+            self.print(f"  Train: {len(train_images)}, Val: {len(val_images)}, Test: {len(test_images)}")
             
             # Copy images to respective hierarchical directories
             train_dest = self.train_dir / category / new_class_name
@@ -221,11 +251,11 @@ class DatasetProcessor:
     
     def augment_training_data_massive(self, target_additional_images=10000):
         """Apply massive augmentation to reach target additional images"""
-        print(f"Applying massive augmentation to generate {target_additional_images} additional images...")
+        self.print(f"Applying massive augmentation to generate {target_additional_images} additional images...")
         
         # Get all augmentation combinations
         all_combinations = self.get_augmentation_combinations()
-        print(f"Total augmentation combinations available: {len(all_combinations)}")
+        self.print(f"Total augmentation combinations available: {len(all_combinations)}")
         
         # Count original training images
         original_train_count = 0
@@ -250,15 +280,15 @@ class DatasetProcessor:
                     'images': images
                 }
         
-        print(f"Original training images: {original_train_count}")
+        self.print(f"Original training images: {original_train_count}")
         
         # Calculate how many augmentations per original image we need
         augmentations_per_image = math.ceil(target_additional_images / original_train_count)
-        print(f"Target augmentations per original image: {augmentations_per_image}")
+        self.print(f"Target augmentations per original image: {augmentations_per_image}")
         
         if augmentations_per_image > len(all_combinations):
-            print(f"Warning: Need {augmentations_per_image} augmentations per image, but only have {len(all_combinations)} combinations.")
-            print("Will use all combinations and repeat some randomly.")
+            self.print(f"Warning: Need {augmentations_per_image} augmentations per image, but only have {len(all_combinations)} combinations.")
+            self.print("Will use all combinations and repeat some randomly.")
         
         total_augmented = 0
         
@@ -268,7 +298,7 @@ class DatasetProcessor:
             if not category_dir.exists():
                 continue
                 
-            print(f"Massively augmenting {category} category...")
+            self.print(f"Massively augmenting {category} category...")
             class_dirs = [d for d in category_dir.iterdir() if d.is_dir()]
             
             for class_dir in class_dirs:
@@ -278,7 +308,7 @@ class DatasetProcessor:
                 if class_key not in class_image_counts:
                     continue
                     
-                print(f"  Augmenting class: {class_key}")
+                self.print(f"  Augmenting class: {class_key}")
                 
                 original_images = class_image_counts[class_key]['images']
                 class_augmented = 0
@@ -323,22 +353,22 @@ class DatasetProcessor:
                             total_augmented += 1
                             
                         except Exception as e:
-                            print(f"    Error applying {aug_name} to {img_path}: {e}")
+                            self.print(f"    Error applying {aug_name} to {img_path}: {e}")
                             continue
                     
                     # Progress update every 50 images
                     if len(original_images) > 50 and (original_images.index(img_path) + 1) % 50 == 0:
                         progress = (original_images.index(img_path) + 1) / len(original_images) * 100
-                        print(f"    Progress: {progress:.1f}% ({original_images.index(img_path) + 1}/{len(original_images)})")
+                        self.print(f"    Progress: {progress:.1f}% ({original_images.index(img_path) + 1}/{len(original_images)})")
                 
-                print(f"    Added {class_augmented} augmented images to {class_name}")
+                self.print(f"    Added {class_augmented} augmented images to {class_name}")
         
-        print(f"Total augmented images created: {total_augmented}")
-        print(f"Target was: {target_additional_images}")
+        self.print(f"Total augmented images created: {total_augmented}")
+        self.print(f"Target was: {target_additional_images}")
     
     def augment_training_data(self, augmentation_factor=2):
         """Apply standard augmentation to training data (original method)"""
-        print("Applying standard augmentation to training data...")
+        self.print("Applying standard augmentation to training data...")
         
         # Process both categories
         for category in ['ripeness', 'bruises']:
@@ -346,12 +376,12 @@ class DatasetProcessor:
             if not category_dir.exists():
                 continue
                 
-            print(f"Augmenting {category} category...")
+            self.print(f"Augmenting {category} category...")
             class_dirs = [d for d in category_dir.iterdir() if d.is_dir()]
             
             for class_dir in class_dirs:
                 class_name = class_dir.name
-                print(f"  Augmenting class: {category}/{class_name}")
+                self.print(f"  Augmenting class: {category}/{class_name}")
                 
                 images = self.get_image_files(class_dir)
                 total_augmented = 0
@@ -390,12 +420,12 @@ class DatasetProcessor:
                         cv2.imwrite(str(aug_path), augmented_img)
                         total_augmented += 1
                 
-                print(f"    Added {total_augmented} augmented images")
+                self.print(f"    Added {total_augmented} augmented images")
     
     def get_dataset_statistics(self):
         """Print dataset statistics with hierarchical structure"""
-        print("\nDataset Statistics:")
-        print("=" * 60)
+        self.print("\nDataset Statistics:")
+        self.print("=" * 60)
         
         total_train = 0
         total_val = 0
@@ -403,8 +433,8 @@ class DatasetProcessor:
         
         # Process each category
         for category in ['ripeness', 'bruises']:
-            print(f"\n{category.upper()} Category:")
-            print("-" * 40)
+            self.print(f"\n{category.upper()} Category:")
+            self.print("-" * 40)
             
             category_train = 0
             category_val = 0
@@ -426,25 +456,25 @@ class DatasetProcessor:
                     category_val += val_count
                     category_test += test_count
                     
-                    print(f"  {class_name:12} - Train: {train_count:4}, Val: {val_count:4}, Test: {test_count:4}")
+                    self.print(f"  {class_name:12} - Train: {train_count:4}, Val: {val_count:4}, Test: {test_count:4}")
             
-            print(f"  {'Subtotal':12} - Train: {category_train:4}, Val: {category_val:4}, Test: {category_test:4}")
+            self.print(f"  {'Subtotal':12} - Train: {category_train:4}, Val: {category_val:4}, Test: {category_test:4}")
             
             total_train += category_train
             total_val += category_val
             total_test += category_test
         
-        print("\n" + "=" * 60)
-        print(f"{'TOTAL':12} - Train: {total_train:4}, Val: {total_val:4}, Test: {total_test:4}")
+        self.print("\n" + "=" * 60)
+        self.print(f"{'TOTAL':12} - Train: {total_train:4}, Val: {total_val:4}, Test: {total_test:4}")
         
         total = total_train + total_val + total_test
         if total > 0:
-            print(f"{'Ratios':12} - Train: {total_train/total:.1%}, Val: {total_val/total:.1%}, Test: {total_test/total:.1%}")
+            self.print(f"{'Ratios':12} - Train: {total_train/total:.1%}, Val: {total_val/total:.1%}, Test: {total_test/total:.1%}")
     
     def print_directory_structure(self):
         """Print the expected output directory structure"""
-        print("\nOutput Directory Structure:")
-        print("=" * 40)
+        self.print("\nOutput Directory Structure:")
+        self.print("=" * 40)
         structure = """
 dataset_split/
 ├── train/
@@ -472,7 +502,7 @@ dataset_split/
         ├── bruised/
         └── not_bruised/
         """
-        print(structure)
+        self.print(structure)
 
 def main():
     parser = argparse.ArgumentParser(description='Split dataset into hierarchical structure and apply augmentation')
@@ -482,45 +512,56 @@ def main():
     parser.add_argument('--massive-augment', type=int, default=0, help='Target number of additional images for massive augmentation (e.g., 10000)')
     parser.add_argument('--no-augment', action='store_true', help='Skip augmentation step')
     parser.add_argument('--show-structure', action='store_true', help='Show expected output structure and exit')
+    parser.add_argument('--log-file', default='log_split.txt', help='Log file name (default: log_split.txt)')
     
     args = parser.parse_args()
     
-    # Initialize processor
-    processor = DatasetProcessor(
-        source_dir=args.source,
-        output_dir=args.output,
-        train_ratio=0.7,
-        val_ratio=0.15,
-        test_ratio=0.15
-    )
+    # Initialize logger
+    logger = LoggingPrinter(args.log_file)
     
-    if args.show_structure:
+    try:
+        # Initialize processor with logger
+        processor = DatasetProcessor(
+            source_dir=args.source,
+            output_dir=args.output,
+            train_ratio=0.7,
+            val_ratio=0.15,
+            test_ratio=0.15,
+            logger=logger
+        )
+        
+        if args.show_structure:
+            processor.print_directory_structure()
+            return
+        
+        logger.print("Class Mapping:")
+        logger.print("-" * 30)
+        for original, (category, new_name) in processor.class_mapping.items():
+            logger.print(f"{original:12} -> {category}/{new_name}")
+        
+        # Create directory structure
+        processor.create_directories()
+        
+        # Split dataset
+        processor.split_dataset()
+        
+        # Apply augmentation to training data (unless disabled)
+        if not args.no_augment:
+            if args.massive_augment > 0:
+                processor.augment_training_data_massive(target_additional_images=args.massive_augment)
+            else:
+                processor.augment_training_data(augmentation_factor=args.augment_factor)
+        
+        # Print statistics
+        processor.get_dataset_statistics()
+        
+        logger.print(f"\nDataset processing complete! Output saved to: {args.output}")
+        logger.print(f"Log saved to: {args.log_file}")
         processor.print_directory_structure()
-        return
-    
-    print("Class Mapping:")
-    print("-" * 30)
-    for original, (category, new_name) in processor.class_mapping.items():
-        print(f"{original:12} -> {category}/{new_name}")
-    
-    # Create directory structure
-    processor.create_directories()
-    
-    # Split dataset
-    processor.split_dataset()
-    
-    # Apply augmentation to training data (unless disabled)
-    if not args.no_augment:
-        if args.massive_augment > 0:
-            processor.augment_training_data_massive(target_additional_images=args.massive_augment)
-        else:
-            processor.augment_training_data(augmentation_factor=args.augment_factor)
-    
-    # Print statistics
-    processor.get_dataset_statistics()
-    
-    print(f"\nDataset processing complete! Output saved to: {args.output}")
-    processor.print_directory_structure()
+        
+    finally:
+        # Always close the logger
+        logger.close()
     
 if __name__ == "__main__":
     main()
