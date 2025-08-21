@@ -205,7 +205,7 @@ def train_model(num_epochs):
     plt.close()
     print(f"Saved plot: {save_path}")
 
-    file_path = os.path.join(data_dir,"efficientnet-b4", "ripeness_b4.pth")
+    file_path = os.path.join(data_dir, "ripeness_b4.pth")
     torch.save(model.state_dict(), file_path)
     print("Model saved successfully.")
 
