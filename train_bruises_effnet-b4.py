@@ -213,7 +213,7 @@ def train_model(num_epochs):
     
 def main():
     # CHANGE ME
-    EPOCHS = 1
+    EPOCHS = 15
     log_path = os.path.join(data_dir,"efficientnet-b4", "log_bruises_effnet-b4.txt")
     with open(log_path, "w") as f:
         sys.stdout = f
