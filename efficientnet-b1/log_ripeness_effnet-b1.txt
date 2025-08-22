@@ -1,0 +1,51 @@
+Saved plot: efficientnet-b1\train_class_distribution_ripeness_effnet-b1.png
+Saved plot: efficientnet-b1\test_class_distribution_ripeness_effnet-b1.png
+Saved plot: efficientnet-b1\valid_class_distribution_ripeness_effnet-b1.png
+Loaded pretrained weights for efficientnet-b1
+Epoch [1/15], Average Loss: 0.4283
+Validation Loss: 1.2385, Validation Accuracy: 0.6582
+Epoch [2/15], Average Loss: 0.3589
+Validation Loss: 0.2667, Validation Accuracy: 0.9005
+Epoch [3/15], Average Loss: 0.3027
+Validation Loss: 0.4280, Validation Accuracy: 0.8662
+Epoch [4/15], Average Loss: 0.2903
+Validation Loss: 0.2791, Validation Accuracy: 0.9024
+Epoch [5/15], Average Loss: 0.2764
+Validation Loss: 0.2272, Validation Accuracy: 0.9042
+Epoch [6/15], Average Loss: 0.2714
+Validation Loss: 0.3689, Validation Accuracy: 0.8517
+Epoch [7/15], Average Loss: 0.2509
+Validation Loss: 0.2764, Validation Accuracy: 0.8969
+Epoch [8/15], Average Loss: 0.2613
+Validation Loss: 0.3330, Validation Accuracy: 0.8933
+Epoch [9/15], Average Loss: 0.2352
+Validation Loss: 0.3736, Validation Accuracy: 0.8590
+Epoch [10/15], Average Loss: 0.2332
+Validation Loss: 0.2886, Validation Accuracy: 0.8897
+Epoch [11/15], Average Loss: 0.2284
+Validation Loss: 0.3355, Validation Accuracy: 0.8770
+Epoch [12/15], Average Loss: 0.2138
+Validation Loss: 0.2535, Validation Accuracy: 0.9186
+Epoch [13/15], Average Loss: 0.2109
+Validation Loss: 0.2941, Validation Accuracy: 0.9078
+Epoch [14/15], Average Loss: 0.2183
+Validation Loss: 0.2633, Validation Accuracy: 0.9096
+Epoch [15/15], Average Loss: 0.1869
+Validation Loss: 0.2680, Validation Accuracy: 0.9096
+Saved plot: efficientnet-b1\val_loss_accuracy_curve_ripeness_effnet-b1.png
+Model saved successfully.
+
+Classification Report:
+              precision    recall  f1-score   support
+
+       green       0.93      0.89      0.91       239
+      yellow       0.91      0.98      0.94       124
+yellow_green       0.84      0.86      0.85       188
+
+    accuracy                           0.90       551
+   macro avg       0.90      0.91      0.90       551
+weighted avg       0.90      0.90      0.90       551
+
+
+Precision: 0.8974, Recall: 0.8966, F1 Score: 0.8965
+Saved plot: efficientnet-b1\confusion_matrix_ripeness_effnet-b1.png
