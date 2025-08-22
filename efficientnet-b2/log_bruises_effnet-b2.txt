@@ -1,0 +1,50 @@
+Saved plot: efficientnet-b2\train_class_distribution_bruises_effnet-b2.png
+Saved plot: efficientnet-b2\test_class_distribution_bruises_effnet-b2.png
+Saved plot: efficientnet-b2\valid_class_distribution_bruises_effnet-b2.png
+Loaded pretrained weights for efficientnet-b2
+Epoch [1/15], Average Loss: 0.4754
+Validation Loss: 0.4487, Validation Accuracy: 0.8230
+Epoch [2/15], Average Loss: 0.3966
+Validation Loss: 0.4558, Validation Accuracy: 0.8189
+Epoch [3/15], Average Loss: 0.3721
+Validation Loss: 0.7380, Validation Accuracy: 0.7449
+Epoch [4/15], Average Loss: 0.3560
+Validation Loss: 0.3781, Validation Accuracy: 0.8498
+Epoch [5/15], Average Loss: 0.3397
+Validation Loss: 0.3237, Validation Accuracy: 0.8663
+Epoch [6/15], Average Loss: 0.3296
+Validation Loss: 0.4027, Validation Accuracy: 0.8354
+Epoch [7/15], Average Loss: 0.3175
+Validation Loss: 0.4082, Validation Accuracy: 0.8230
+Epoch [8/15], Average Loss: 0.3080
+Validation Loss: 0.4230, Validation Accuracy: 0.8210
+Epoch [9/15], Average Loss: 0.2969
+Validation Loss: 0.3463, Validation Accuracy: 0.8601
+Epoch [10/15], Average Loss: 0.2905
+Validation Loss: 0.2834, Validation Accuracy: 0.8848
+Epoch [11/15], Average Loss: 0.2770
+Validation Loss: 0.3268, Validation Accuracy: 0.8621
+Epoch [12/15], Average Loss: 0.2763
+Validation Loss: 0.3007, Validation Accuracy: 0.8601
+Epoch [13/15], Average Loss: 0.2584
+Validation Loss: 0.4143, Validation Accuracy: 0.8025
+Epoch [14/15], Average Loss: 0.2550
+Validation Loss: 1.0939, Validation Accuracy: 0.7675
+Epoch [15/15], Average Loss: 0.2428
+Validation Loss: 0.3000, Validation Accuracy: 0.8663
+Saved plot: efficientnet-b2\val_loss_accuracy_curve_bruises_effnet-b2.png
+Model saved successfully.
+
+Classification Report:
+              precision    recall  f1-score   support
+
+     bruised       0.86      0.96      0.90       269
+ not_bruised       0.94      0.81      0.87       225
+
+    accuracy                           0.89       494
+   macro avg       0.90      0.88      0.89       494
+weighted avg       0.90      0.89      0.89       494
+
+
+Precision: 0.8955, Recall: 0.8907, F1 Score: 0.8897
+Saved plot: efficientnet-b2\confusion_matrix_bruises_effnet-b2.png
