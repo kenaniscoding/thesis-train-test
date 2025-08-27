@@ -1,0 +1,6 @@
+Saved plot: efficientnet-b4\train_class_distribution_bruises_effnet-b4.png
+Saved plot: efficientnet-b4\test_class_distribution_bruises_effnet-b4.png
+Saved plot: efficientnet-b4\valid_class_distribution_bruises_effnet-b4.png
+Loaded pretrained weights for efficientnet-b4
+Epoch [1/30], Average Loss: 0.4529
+Validation Loss: 0.5072, Validation Accuracy: 0.7716

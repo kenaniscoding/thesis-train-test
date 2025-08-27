@@ -213,7 +213,7 @@ def train_model(num_epochs):
     
 def main():
     # CHANGE ME
-    EPOCHS = 15
+    EPOCHS = 30
     log_path = os.path.join(data_dir,"effnet-b4-10k", "log_ripeness_effnet-b4.txt")
     with open(log_path, "w") as f:
         sys.stdout = f

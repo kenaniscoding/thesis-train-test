@@ -1,0 +1,111 @@
+Saved plot: effnet-b4-10k\train_class_distribution_bruises.png
+Saved plot: effnet-b4-10k\test_class_distribution_bruises.png
+Saved plot: effnet-b4-10k\valid_class_distribution_bruises.png
+Loaded pretrained weights for efficientnet-b4
+Epoch [1/30], Average Loss: 0.4556
+Validation Loss: 0.8497, Validation Accuracy: 0.8436
+Validation loss decreased. Saving model to bruises_b4_best.pth ...
+Epoch [2/30], Average Loss: 0.3718
+Validation Loss: 0.4532, Validation Accuracy: 0.8292
+Validation loss decreased. Saving model to bruises_b4_best.pth ...
+Epoch [3/30], Average Loss: 0.3366
+Validation Loss: 0.4247, Validation Accuracy: 0.8477
+Validation loss decreased. Saving model to bruises_b4_best.pth ...
+Epoch [4/30], Average Loss: 0.3164
+Validation Loss: 0.3714, Validation Accuracy: 0.8539
+Validation loss decreased. Saving model to bruises_b4_best.pth ...
+Epoch [5/30], Average Loss: 0.2957
+Validation Loss: 0.3686, Validation Accuracy: 0.8395
+Validation loss decreased. Saving model to bruises_b4_best.pth ...
+Epoch [6/30], Average Loss: 0.2833
+Validation Loss: 0.4722, Validation Accuracy: 0.8025
+EarlyStopping counter: 1 out of 5
+Epoch [7/30], Average Loss: 0.2621
+Validation Loss: 0.3396, Validation Accuracy: 0.8601
+Validation loss decreased. Saving model to bruises_b4_best.pth ...
+Epoch [8/30], Average Loss: 0.2447
+Validation Loss: 0.3007, Validation Accuracy: 0.8889
+Validation loss decreased. Saving model to bruises_b4_best.pth ...
+Epoch [9/30], Average Loss: 0.2259
+Validation Loss: 0.3666, Validation Accuracy: 0.8704
+EarlyStopping counter: 1 out of 5
+Epoch [10/30], Average Loss: 0.2037
+Validation Loss: 0.3731, Validation Accuracy: 0.8807
+EarlyStopping counter: 2 out of 5
+Epoch [11/30], Average Loss: 0.1908
+Validation Loss: 0.2965, Validation Accuracy: 0.8827
+Validation loss decreased. Saving model to bruises_b4_best.pth ...
+Epoch [12/30], Average Loss: 0.1749
+Validation Loss: 0.4342, Validation Accuracy: 0.8560
+EarlyStopping counter: 1 out of 5
+Epoch [13/30], Average Loss: 0.1531
+Validation Loss: 0.3867, Validation Accuracy: 0.8848
+EarlyStopping counter: 2 out of 5
+Epoch [14/30], Average Loss: 0.1493
+Validation Loss: 0.2707, Validation Accuracy: 0.8992
+Validation loss decreased. Saving model to bruises_b4_best.pth ...
+Epoch [15/30], Average Loss: 0.1427
+Validation Loss: 0.4391, Validation Accuracy: 0.8621
+EarlyStopping counter: 1 out of 5
+Epoch [16/30], Average Loss: 0.1212
+Validation Loss: 0.3732, Validation Accuracy: 0.8951
+EarlyStopping counter: 2 out of 5
+Epoch [17/30], Average Loss: 0.1065
+Validation Loss: 0.2887, Validation Accuracy: 0.9218
+EarlyStopping counter: 3 out of 5
+Epoch [18/30], Average Loss: 0.1033
+Validation Loss: 0.2651, Validation Accuracy: 0.9115
+Validation loss decreased. Saving model to bruises_b4_best.pth ...
+Epoch [19/30], Average Loss: 0.0948
+Validation Loss: 0.3216, Validation Accuracy: 0.9115
+EarlyStopping counter: 1 out of 5
+Epoch [20/30], Average Loss: 0.0900
+Validation Loss: 0.2532, Validation Accuracy: 0.9259
+Validation loss decreased. Saving model to bruises_b4_best.pth ...
+Epoch [21/30], Average Loss: 0.0806
+Validation Loss: 0.2780, Validation Accuracy: 0.9115
+EarlyStopping counter: 1 out of 5
+Epoch [22/30], Average Loss: 0.0778
+Validation Loss: 0.2789, Validation Accuracy: 0.9156
+EarlyStopping counter: 2 out of 5
+Epoch [23/30], Average Loss: 0.0742
+Validation Loss: 0.3150, Validation Accuracy: 0.9074
+EarlyStopping counter: 3 out of 5
+Epoch [24/30], Average Loss: 0.0653
+Validation Loss: 0.3082, Validation Accuracy: 0.9115
+EarlyStopping counter: 4 out of 5
+Epoch [25/30], Average Loss: 0.0621
+Validation Loss: 0.2017, Validation Accuracy: 0.9424
+Validation loss decreased. Saving model to bruises_b4_best.pth ...
+Epoch [26/30], Average Loss: 0.0618
+Validation Loss: 0.2397, Validation Accuracy: 0.9300
+EarlyStopping counter: 1 out of 5
+Epoch [27/30], Average Loss: 0.0565
+Validation Loss: 0.2642, Validation Accuracy: 0.9280
+EarlyStopping counter: 2 out of 5
+Epoch [28/30], Average Loss: 0.0527
+Validation Loss: 0.3188, Validation Accuracy: 0.9218
+EarlyStopping counter: 3 out of 5
+Epoch [29/30], Average Loss: 0.0585
+Validation Loss: 0.2469, Validation Accuracy: 0.9424
+EarlyStopping counter: 4 out of 5
+Epoch [30/30], Average Loss: 0.0435
+Validation Loss: 0.2626, Validation Accuracy: 0.9321
+EarlyStopping counter: 5 out of 5
+Early stopping triggered. Stopping training.
+Saved plot: effnet-b4-10k\val_loss_accuracy_curve_bruises.png
+Loaded best model for evaluation.
+
+Classification Report:
+              precision    recall  f1-score   support
+
+     bruised       0.96      0.97      0.96       269
+ not_bruised       0.96      0.95      0.95       225
+
+    accuracy                           0.96       494
+   macro avg       0.96      0.96      0.96       494
+weighted avg       0.96      0.96      0.96       494
+
+
+Precision: 0.9575, Recall: 0.9575, F1 Score: 0.9575
+Saved plot: effnet-b4-10k\confusion_matrix_bruises.png
