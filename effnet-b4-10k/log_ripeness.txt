@@ -1,0 +1,68 @@
+Saved plot: effnet-b4-10k\train_class_distribution_ripeness.png
+Saved plot: effnet-b4-10k\test_class_distribution_ripeness.png
+Saved plot: effnet-b4-10k\valid_class_distribution_ripeness.png
+Loaded pretrained weights for efficientnet-b4
+Epoch [1/30], Avg Train Loss: 0.4168
+Validation Loss: 0.4357, Validation Accuracy: 0.8788
+Epoch [2/30], Avg Train Loss: 0.3176
+Validation Loss: 0.3302, Validation Accuracy: 0.8825
+Epoch [3/30], Avg Train Loss: 0.2824
+Validation Loss: 0.2828, Validation Accuracy: 0.9078
+Epoch [4/30], Avg Train Loss: 0.2663
+Validation Loss: 0.2707, Validation Accuracy: 0.8825
+Epoch [5/30], Avg Train Loss: 0.2395
+Validation Loss: 0.2390, Validation Accuracy: 0.9078
+Epoch [6/30], Avg Train Loss: 0.2229
+Validation Loss: 0.2558, Validation Accuracy: 0.9150
+EarlyStopping counter: 1 out of 5
+Epoch [7/30], Avg Train Loss: 0.2207
+Validation Loss: 0.3101, Validation Accuracy: 0.8535
+EarlyStopping counter: 2 out of 5
+Epoch [8/30], Avg Train Loss: 0.1988
+Validation Loss: 0.2065, Validation Accuracy: 0.9313
+Epoch [9/30], Avg Train Loss: 0.1762
+Validation Loss: 0.3926, Validation Accuracy: 0.8825
+EarlyStopping counter: 1 out of 5
+Epoch [10/30], Avg Train Loss: 0.1663
+Validation Loss: 0.2071, Validation Accuracy: 0.9277
+EarlyStopping counter: 2 out of 5
+Epoch [11/30], Avg Train Loss: 0.1580
+Validation Loss: 0.3792, Validation Accuracy: 0.8770
+EarlyStopping counter: 3 out of 5
+Epoch [12/30], Avg Train Loss: 0.1387
+Validation Loss: 0.1924, Validation Accuracy: 0.9458
+Epoch [13/30], Avg Train Loss: 0.1322
+Validation Loss: 0.1702, Validation Accuracy: 0.9476
+Epoch [14/30], Avg Train Loss: 0.1004
+Validation Loss: 0.3003, Validation Accuracy: 0.9096
+EarlyStopping counter: 1 out of 5
+Epoch [15/30], Avg Train Loss: 0.1038
+Validation Loss: 0.5033, Validation Accuracy: 0.8897
+EarlyStopping counter: 2 out of 5
+Epoch [16/30], Avg Train Loss: 0.1084
+Validation Loss: 0.2441, Validation Accuracy: 0.9548
+EarlyStopping counter: 3 out of 5
+Epoch [17/30], Avg Train Loss: 0.0840
+Validation Loss: 0.3123, Validation Accuracy: 0.9385
+EarlyStopping counter: 4 out of 5
+Epoch [18/30], Avg Train Loss: 0.0779
+Validation Loss: 0.4123, Validation Accuracy: 0.9476
+EarlyStopping counter: 5 out of 5
+Early stopping triggered. Restoring best model weights.
+Saved plot: effnet-b4-10k\val_loss_accuracy_curve_ripeness.png
+Best model saved successfully.
+
+Classification Report:
+              precision    recall  f1-score   support
+
+       green       0.96      0.95      0.95       239
+      yellow       0.98      0.97      0.97       124
+yellow_green       0.92      0.93      0.92       188
+
+    accuracy                           0.95       551
+   macro avg       0.95      0.95      0.95       551
+weighted avg       0.95      0.95      0.95       551
+
+
+Precision: 0.9476, Recall: 0.9474, F1 Score: 0.9475
+Saved plot: effnet-b4-10k\confusion_matrix_ripeness.png
