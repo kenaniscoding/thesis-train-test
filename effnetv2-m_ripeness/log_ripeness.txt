@@ -1,0 +1,88 @@
+Saved plot: C:\Users\dangi\OneDrive\Desktop\THESIS\Latest(08_18_2025)\dataset\train_class_distribution_ripeness.png
+Saved plot: C:\Users\dangi\OneDrive\Desktop\THESIS\Latest(08_18_2025)\dataset\test_class_distribution_ripeness.png
+Saved plot: C:\Users\dangi\OneDrive\Desktop\THESIS\Latest(08_18_2025)\dataset\valid_class_distribution_ripeness.png
+Epoch [1/100], Avg Train Loss: 0.7011
+Validation Loss: 0.3767, Validation Accuracy: 0.8770
+Epoch [2/100], Avg Train Loss: 0.3358
+Validation Loss: 0.3065, Validation Accuracy: 0.8843
+Epoch [3/100], Avg Train Loss: 0.2735
+Validation Loss: 0.2783, Validation Accuracy: 0.8897
+Epoch [4/100], Avg Train Loss: 0.2185
+Validation Loss: 0.2660, Validation Accuracy: 0.9295
+Epoch [5/100], Avg Train Loss: 0.1751
+Validation Loss: 0.2192, Validation Accuracy: 0.9458
+Epoch [6/100], Avg Train Loss: 0.1354
+Validation Loss: 0.2448, Validation Accuracy: 0.9458
+EarlyStopping counter: 1 / 10
+Epoch [7/100], Avg Train Loss: 0.1199
+Validation Loss: 0.2043, Validation Accuracy: 0.9548
+Epoch [8/100], Avg Train Loss: 0.0978
+Validation Loss: 0.2020, Validation Accuracy: 0.9656
+Epoch [9/100], Avg Train Loss: 0.0828
+Validation Loss: 0.3241, Validation Accuracy: 0.9259
+EarlyStopping counter: 1 / 10
+Epoch [10/100], Avg Train Loss: 0.0949
+Validation Loss: 0.2059, Validation Accuracy: 0.9566
+EarlyStopping counter: 2 / 10
+Epoch [11/100], Avg Train Loss: 0.0664
+Validation Loss: 0.3161, Validation Accuracy: 0.9512
+EarlyStopping counter: 3 / 10
+Epoch [12/100], Avg Train Loss: 0.0578
+Validation Loss: 0.3198, Validation Accuracy: 0.9548
+EarlyStopping counter: 4 / 10
+Epoch [13/100], Avg Train Loss: 0.0518
+Validation Loss: 0.2494, Validation Accuracy: 0.9548
+EarlyStopping counter: 5 / 10
+Epoch [14/100], Avg Train Loss: 0.0593
+Validation Loss: 0.2068, Validation Accuracy: 0.9693
+EarlyStopping counter: 6 / 10
+Epoch [15/100], Avg Train Loss: 0.0390
+Validation Loss: 0.1905, Validation Accuracy: 0.9675
+Epoch [16/100], Avg Train Loss: 0.0314
+Validation Loss: 0.2745, Validation Accuracy: 0.9656
+EarlyStopping counter: 1 / 10
+Epoch [17/100], Avg Train Loss: 0.0260
+Validation Loss: 0.2757, Validation Accuracy: 0.9638
+EarlyStopping counter: 2 / 10
+Epoch [18/100], Avg Train Loss: 0.0426
+Validation Loss: 0.2756, Validation Accuracy: 0.9494
+EarlyStopping counter: 3 / 10
+Epoch [19/100], Avg Train Loss: 0.0303
+Validation Loss: 0.3118, Validation Accuracy: 0.9548
+EarlyStopping counter: 4 / 10
+Epoch [20/100], Avg Train Loss: 0.0253
+Validation Loss: 0.3164, Validation Accuracy: 0.9638
+EarlyStopping counter: 5 / 10
+Epoch [21/100], Avg Train Loss: 0.0277
+Validation Loss: 0.2675, Validation Accuracy: 0.9638
+EarlyStopping counter: 6 / 10
+Epoch [22/100], Avg Train Loss: 0.0258
+Validation Loss: 0.3195, Validation Accuracy: 0.9620
+EarlyStopping counter: 7 / 10
+Epoch [23/100], Avg Train Loss: 0.0322
+Validation Loss: 0.3164, Validation Accuracy: 0.9530
+EarlyStopping counter: 8 / 10
+Epoch [24/100], Avg Train Loss: 0.0189
+Validation Loss: 0.3281, Validation Accuracy: 0.9620
+EarlyStopping counter: 9 / 10
+Epoch [25/100], Avg Train Loss: 0.0143
+Validation Loss: 0.3142, Validation Accuracy: 0.9638
+EarlyStopping counter: 10 / 10
+Early stopping triggered. Restoring best model weights.
+Saved plot: C:\Users\dangi\OneDrive\Desktop\THESIS\Latest(08_18_2025)\dataset\val_loss_accuracy_curve_ripeness.png
+Best model saved successfully.
+
+Classification Report:
+              precision    recall  f1-score   support
+
+       green       0.97      0.97      0.97       239
+      yellow       0.98      0.98      0.98       124
+yellow_green       0.95      0.96      0.95       188
+
+    accuracy                           0.97       551
+   macro avg       0.97      0.97      0.97       551
+weighted avg       0.97      0.97      0.97       551
+
+
+Precision: 0.9692, Recall: 0.9691, F1 Score: 0.9692
+Saved plot: C:\Users\dangi\OneDrive\Desktop\THESIS\Latest(08_18_2025)\dataset\confusion_matrix_ripeness.png

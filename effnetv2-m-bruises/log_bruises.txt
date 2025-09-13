@@ -1,0 +1,39 @@
+Saved plot: C:\Users\dangi\OneDrive\Desktop\THESIS\Latest(08_18_2025)\EfficientNet\dataset_bruises\train_class_distribution_bruises.png
+Saved plot: C:\Users\dangi\OneDrive\Desktop\THESIS\Latest(08_18_2025)\EfficientNet\dataset_bruises\test_class_distribution_bruises.png
+Saved plot: C:\Users\dangi\OneDrive\Desktop\THESIS\Latest(08_18_2025)\EfficientNet\dataset_bruises\valid_class_distribution_bruises.png
+Epoch [1/100], Average Loss: 0.1731
+Validation Loss: 0.0756, Validation Accuracy: 0.9765
+Epoch [2/100], Average Loss: 0.0724
+Validation Loss: 0.0300, Validation Accuracy: 0.9922
+Epoch [3/100], Average Loss: 0.0293
+Validation Loss: 0.0596, Validation Accuracy: 0.9791
+EarlyStopping counter: 1 / 5
+Epoch [4/100], Average Loss: 0.0113
+Validation Loss: 0.0344, Validation Accuracy: 0.9869
+EarlyStopping counter: 2 / 5
+Epoch [5/100], Average Loss: 0.0063
+Validation Loss: 0.0372, Validation Accuracy: 0.9896
+EarlyStopping counter: 3 / 5
+Epoch [6/100], Average Loss: 0.0709
+Validation Loss: 0.0669, Validation Accuracy: 0.9713
+EarlyStopping counter: 4 / 5
+Epoch [7/100], Average Loss: 0.0332
+Validation Loss: 0.0574, Validation Accuracy: 0.9869
+EarlyStopping counter: 5 / 5
+Early stopping triggered!
+Saved plot: C:\Users\dangi\OneDrive\Desktop\THESIS\Latest(08_18_2025)\EfficientNet\dataset_bruises\val_loss_accuracy_curve_bruises.png
+Saved best model from epoch 2 with val_loss=0.0300
+
+Classification Report:
+              precision    recall  f1-score   support
+
+     bruised       0.94      1.00      0.97       141
+ not_bruised       1.00      0.96      0.98       239
+
+    accuracy                           0.98       380
+   macro avg       0.97      0.98      0.97       380
+weighted avg       0.98      0.98      0.98       380
+
+
+Precision: 0.9777, Recall: 0.9763, F1 Score: 0.9765
+Saved plot: C:\Users\dangi\OneDrive\Desktop\THESIS\Latest(08_18_2025)\EfficientNet\dataset_bruises\confusion_matrix_bruises.png
